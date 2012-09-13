@@ -1,0 +1,40 @@
+@charset 'UTF-8';
+
+.nui-mnu {
+  line-height: inherit;
+  position: relative;
+  text-align: left;
+  vertical-align: middle;
+  > .nui-arw-dwn {
+    margin-left: 2px;
+  }
+  > div {
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(126, 157, 186);
+    border-top: 1px solid rgb(126, 157, 186);
+    left: 0;
+    position: absolute;
+    min-width: 100%;
+    z-index: +1;
+    > .nui-opt {
+      border-left: 1px solid rgb(126, 157, 186);
+      border-right: 1px solid rgb(126, 157, 186);
+      display: block;
+      &:hover {
+        background-color: rgb(51, 118, 220);
+        color: rgb(255, 255, 255);
+      }
+    }
+    > hr.nui-opt {
+      border: none;
+      border-top: 1px solid rgb(126, 157, 186);
+      margin: 0;
+    }
+    > a.nui-opt {
+      color: inherit;
+      padding: 2px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+  }
+}

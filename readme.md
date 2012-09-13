@@ -1,17 +1,17 @@
-##[Ninja Autocomplete](http://ninjaui.com/autocomplete)
+##[Ninja Menu](http://ninjaui.com/menu)
 *the [jQuery](http://jquery.com/ "jQuery 1.7+") plugin for lethal interaction*
 
 ###Develop
 
-1.) [`Fork`](fork_select) Ninja Autocomplete.
+1.) [`Fork`](fork_select) Ninja Menu.
 
 2.) Clone from your fork.
 
-    git clone git@github.com:$GITHUB_USER/ninja.autocomplete.git ~/Development
+    git clone git@github.com:$GITHUB_USER/ninja.menu.git ~/Development
 
 3.) Install dependencies:
 
-    cd ~/Development/ninja.autocomplete
+    cd ~/Development/ninja.menu
     npm install
 
 4a.) Live reload/restyle your browser when libraries/tests change:

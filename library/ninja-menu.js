@@ -62,7 +62,7 @@ Enable ECMAScript 5 strict mode.
         if ((offset.top + menu.$list.outerHeight()) > ($(window).scrollTop() + $(window).height())) {
           menu.$list.css('bottom', 0);
         } else {
-          menu.$list.css('top', menu.$element.outerHeight() + 2);
+          menu.$list.css('top', menu.$element.outerHeight() + 6);
         }
         if ((offset.left + menu.$list.outerWidth()) > ($(window).scrollLeft() + $(window).width())) {
           menu.$list.css({
@@ -72,7 +72,7 @@ Enable ECMAScript 5 strict mode.
 
           menu.$carrot.css({
             left: 'auto',
-            right: '8px'
+            right: '12px'
           });
         }
       }

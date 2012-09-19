@@ -30,7 +30,7 @@ Enable ECMAScript 5 strict mode.
 
     menu.$list = $('<div class="ninja-list">');
 
-    $('<div class="ninja-point-up">').css('left', (menu.$element.outerWidth() / 2) - 3).appendTo(menu.$list);
+    menu.$point = $('<div class="ninja-point-up">').appendTo(menu.$list);
 
     $.each(menu.list, function (i, item) {
       var $element = $(item).addClass('ninja-item');
@@ -51,7 +51,10 @@ Enable ECMAScript 5 strict mode.
     menu.$element.on('click.ninja', function (event) {
       event.stopPropagation();
 
-      var offset;
+      var
+        center,
+        height,
+        offset;
 
       if (menu.$list.is(':visible')) {
         menu.$list.detach();
@@ -66,18 +69,26 @@ Enable ECMAScript 5 strict mode.
 
         menu.$element.addClass('ninja-select');
 
+        center = (menu.$element.outerWidth() / 2) - 4;
+
+        height = menu.$element.outerHeight() + 6;
+
         offset = menu.$list.offset();
 
         if ((offset.top + menu.$list.outerHeight()) > ($(window).scrollTop() + $(window).height())) {
-          menu.$list.css('bottom', 0);
+          menu.$list.css('bottom', height);
         } else {
-          menu.$list.css('top', menu.$element.outerHeight() + 6);
+          menu.$list.css('top', height);
         }
         if ((offset.left + menu.$list.outerWidth()) > ($(window).scrollLeft() + $(window).width())) {
           menu.$list.css({
             left: 'auto',
             right: 0
           });
+
+          menu.$point.css('right', center);
+        } else if (menu.$point.css('right') === 'auto') {
+          menu.$point.css('left', center);
         }
       }
     });

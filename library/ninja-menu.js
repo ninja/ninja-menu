@@ -20,29 +20,32 @@ Enable ECMAScript 5 strict mode.
       $.ninja.error('Menu must include an element.');
     }
 
-    menu.$element.addClass('nui-mnu').append($('<span>', {
-      'class': 'nui-arw-dwn',
-      css: {
-        'border-top-color': menu.$element.css('color')
-      }
-    }));
+    if (options && 'list' in options) {
+      menu.list = options.list;
+    } else {
+      $.ninja.error('Menu must include a list.');
+    }
 
-    menu.$list = $('<div class="nui-lst">');
+    menu.$element.addClass('ninja-menu').append('<div class="ninja-arrow-down">');
 
-    menu.$carrot = $('<span class="nui-crt"></span>').appendTo(menu.$list);
+    menu.$list = $('<div class="ninja-list">');
 
-    $('#' + menu.$element.attr('list')).find('option').each(function (i, option) {
-      var $element = $($(option).html()).addClass('nui-opt');
+    $('<div class="ninja-point-up">').css('left', (menu.$element.outerWidth() / 2) - 3).appendTo(menu.$list);
+
+    $.each(menu.list, function (i, item) {
+      var $element = $(item).addClass('ninja-item');
 
       if (i === 0) {
-        $element.addClass('nui-fst');
+        $element.addClass('ninja-first');
       }
 
       menu.$list.append($element);
     });
 
     $(document).on('click.ninja', function () {
-      menu.$list.fadeOut('fast');
+      menu.$list.detach();
+
+      menu.$element.removeClass('ninja-select');
     });
 
     menu.$element.on('click.ninja', function (event) {
@@ -51,11 +54,17 @@ Enable ECMAScript 5 strict mode.
       var offset;
 
       if (menu.$list.is(':visible')) {
-        menu.$list.fadeOut('fast');
-      } else {
-        $('.nui-mnu > div').fadeOut('fast');
+        menu.$list.detach();
 
-        menu.$element.append(menu.$list.fadeIn('fast'));
+        menu.$element.removeClass('ninja-select');
+      } else {
+        $('.ninja-menu').removeClass('ninja-select');
+
+        $('.ninja-list').detach();
+
+        menu.$element.append(menu.$list);
+
+        menu.$element.addClass('ninja-select');
 
         offset = menu.$list.offset();
 
@@ -68,11 +77,6 @@ Enable ECMAScript 5 strict mode.
           menu.$list.css({
             left: 'auto',
             right: 0
-          });
-
-          menu.$carrot.css({
-            left: 'auto',
-            right: '12px'
           });
         }
       }

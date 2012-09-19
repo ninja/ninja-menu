@@ -36,7 +36,9 @@
 
   module('instance', {
     setup: function () {
-      this.instance = new $.Ninja.Menu('<button></button>');
+      this.instance = new $.Ninja.Menu('<span></span>', {
+        list: []
+      });
     }
   });
 
@@ -51,21 +53,34 @@
 
   module('elements', {
     setup: function () {
-      this.elements = $('#qunit-fixture').find('.nui-tst-menu');
+      this.elements = $('#qunit-fixture').find('.test-span');
     }
   });
 
   test('are chainable', function () {
-    strictEqual(this.elements.ninja('menu'), this.elements, 'should be chainable');
+    strictEqual(this.elements.ninja('menu', {
+      list: []
+    }), this.elements, 'should be chainable');
   });
 
   test('has class', function () {
-    this.elements.ninja('menu').each(function () {
-      ok($(this).hasClass('nui-mnu'), 'should have nui-mnu class');
+    this.elements.ninja('menu', {
+      list: []
+    }).each(function () {
+      ok($(this).hasClass('ninja-menu'), 'should have menu class');
     });
   });
 
   QUnit.done(function () {
-    $('#qunit-examples').find('.nui-tst-menu').ninja('menu');
+    $('#qunit-examples').find('.test-span').ninja('menu', {
+      list: [
+        $('<div>foo</div>').on('click', function () {
+          console.log('foo');
+        }),
+        $('<div>bar</div>').on('click', function () {
+          console.log('bar');
+        })
+      ]
+    });
   });
 }(jQuery));

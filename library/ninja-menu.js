@@ -1,16 +1,6 @@
-/*!
-##Begin Immediately-Invoked Function Expression
-
-Assign `jQuery` to `$`.
-
-Enable ECMAScript 5 strict mode.
-*/
 (function ($) {
   'use strict';
 
-/*
-##Menu Constructor
-*/
   $.Ninja.Menu = function (element, options) {
     var menu = this;
 
@@ -97,10 +87,4 @@ Enable ECMAScript 5 strict mode.
   $.ninja.menu = function (element, options) {
     $.extend(new $.Ninja(element, options), new $.Ninja.Menu(element, options));
   };
-
-/*!
-##End Immediately-Invoked Function Expression
-
-Preserve jQuery's state while invoking.
-*/
 }(jQuery));
